@@ -12,7 +12,7 @@ const pgp = postgres();
 
 app.use(cors(
     {
-        origin: "https://postify-p3nw.onrender.com",
+        origin: "https://employeeform-l0ua.onrender.com",
     }
 ));
 app.use(bodyParser.json());
