@@ -10,7 +10,11 @@ const pg_url = process.env.DB_URL;
 const app = express();
 const pgp = postgres();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: "https://postify-p3nw.onrender.com",
+    }
+));
 app.use(bodyParser.json());
 
 const db = pgp(pg_url);
@@ -36,6 +40,11 @@ const calculateExperience = (doj) => {
         exp--;
     return exp;
 }
+
+app.get("/",(req,res) => {
+    res.setHeader('Access-Control-Allow-Credentials' ,"true");
+    res.send("Backend is working...");
+});
     
 app.get('/employees', async (req, res) => {
     try {
