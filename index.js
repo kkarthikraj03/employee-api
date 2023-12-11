@@ -33,9 +33,10 @@ CREATE TABLE IF NOT EXISTS employee (
     joining_date DATE,
     experience INT NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
-    phone_no VARCHAR(20),
+    phone_no VARCHAR(20)
 );
 `;
+
 
 const calculateAge = (dob) => {
     const today = new Date();
