@@ -28,12 +28,12 @@ CREATE TABLE IF NOT EXISTS employee (
     age INT NOT NULL,
     address VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
-    dept VARCHAR(255) NOT NULL,
+    department VARCHAR(255) NOT NULL,
     designation VARCHAR(255) NOT NULL,
     join_date DATE NOT NULL,
     experience INT NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
-    phno VARCHAR(20) NOT NULL
+    phone_no VARCHAR(20) NOT NULL
 );
 `;
 
