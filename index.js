@@ -19,6 +19,24 @@ app.use(bodyParser.json());
 
 const db = pgp(pg_url);
 
+const createEmployeeTableScript = `
+CREATE TABLE IF NOT EXISTS employee (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    dob DATE NOT NULL,
+    age INT NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    dept VARCHAR(255) NOT NULL,
+    designation VARCHAR(255) NOT NULL,
+    join_date DATE NOT NULL,
+    experience INT NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL,
+    phno VARCHAR(20) NOT NULL
+);
+`;
+
 const calculateAge = (dob) => {
     const today = new Date();
     const Dob = new Date(dob);
@@ -85,8 +103,15 @@ app.post('/',async(req,res) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`)
-});
+db.none(createEmployeeTableScript)
+  .then(() => {
+    console.log('Employee table created successfully');
+    app.listen(port, () => {
+      console.log(`Server is running at http://localhost:${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Error creating employee table', error);
+  });
 
 
